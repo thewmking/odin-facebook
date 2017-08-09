@@ -1,0 +1,13 @@
+p#notice
+  = notice
+
+div.user-info
+  .row
+    = @user.name
+  .row
+    = @user.email
+
+div
+  = link_to 'Edit', edit_user_path(@user)
+  | |
+  = link_to 'Back', users_path
