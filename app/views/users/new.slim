@@ -1,5 +1,6 @@
 h1 New User
 
 div
-  = render 'form', user: @user
-  = link_to 'Back', users_path
+= form_for @user, url: users_admin_path, html: { method: :post } do |f|
+  = render 'form', f: f
+  = link_to 'Back', users_admin_path

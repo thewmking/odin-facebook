@@ -1,0 +1,20 @@
+header.navbar.navbar-fixed-top.navbar-inverse
+  .container
+    = link_to "odin-book", root_path, id: "logo"
+  nav
+    ul.nav.navbar-nav.navbar-right
+      li 
+        = link_to "Home", root_path
+        - if logged_in?
+          li.dropdown
+            a.dropdown-toggle href="#" data-toggle="dropdown" 
+              | Account
+              b.caret
+            ul.dropdown-menu
+              li
+                = link_to "Settings", edit_user_registration_path(current_user)
+              li 
+                = link_to "Profile", "/users/#{current_user.id}"
+              li.divider
+              li
+                = link_to "Log out", destroy_user_session_path, method: :delete
