@@ -3,9 +3,10 @@ html
   head
     title
       | OdinFacebook
-    = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = render 'layouts/rails_default'
   body
     = render 'layouts/header'
     = yield
+    - if Rails.env.development?
+      = debug(params)
+      = console
