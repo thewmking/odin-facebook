@@ -6,6 +6,10 @@ html
     = render 'layouts/rails_default'
   body
     = render 'layouts/header'
+    .container
+      - flash.each do |message_type, message|
+        div class="alert alert-#{message_type}"
+          = message
     = yield
     - if Rails.env.development?
       = debug(params)
