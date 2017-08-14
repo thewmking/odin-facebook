@@ -7,4 +7,12 @@ class User < ApplicationRecord
   has_many :posts,    dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes,    dependent: :destroy
+
+  def likes?(post_id)
+    liked_post_ids = []
+    self.likes.each do |l|
+      liked_post_ids << l.post_id
+    end
+    post_id.in?(liked_post_ids)
+  end
 end
