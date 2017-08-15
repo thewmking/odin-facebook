@@ -1,0 +1,6 @@
+= form_for [ post, @comment ] do |f|
+  .field
+    /= f.hidden_field :post_id
+    = f.text_area :content, placeholder: "Your comment goes here"
+  = f.submit "Comment", class: "btn btn.primary"
+br

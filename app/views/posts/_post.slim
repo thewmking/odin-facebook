@@ -8,14 +8,32 @@ li class="post-#{post.id}"
   span.timestamp
     | Posted #{time_ago_in_words(post.created_at)} ago.
   br
-  span.likes
+  span.like-links
     - if current_user.likes?(post.id)
       = link_to "unlike", like_path(:id => post.id), method: :delete
     - else
       = link_to "like", likes_path(:post_id => post.id), method: :post
+  span.likes
+    - if post.likes.present?
+      | The following users liked this post:
+      - post.likes.each do |l|
+        = l.user.name
   br
   - if current_user == post.user
     span.delete
       = link_to "delete", post, method: :delete,
                                 data: { confirm: "You sure?" }
+  br
+  - if post.comments.present?
+    - post.comments.each do |c|
+      ul.comment
+        li
+          = c.user.name  
+          | :   
+          = c.content
+  = form_for(@comment) do |f|
+    .field
+      = f.hidden_field :post_id, :value => post.id
+      = f.text_area :content, placeholder: "Your comment goes here"
+    = f.submit "Comment", class: "btn btn.primary"
   br
