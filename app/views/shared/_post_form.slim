@@ -1,5 +1,9 @@
 = form_for(@post) do |f|
-  .field
+  h3 
+    .fa.fa-pencil-square-o
+    |  Create a post
+  .form-fields
     = f.text_area :content, placeholder: "Your post goes here"
-  = f.submit "Post", class: "btn btn.primary"
+    br
+    = f.submit "Post", class: "btn btn.primary"
   
