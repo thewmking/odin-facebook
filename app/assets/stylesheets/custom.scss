@@ -205,11 +205,6 @@ a {
           color: #44679F;
         }
       }
-      .delete {
-        a:hover {
-          color: #e55e5e;
-        }
-      }
     }
     .comments {
       background-color: #fff;
@@ -225,6 +220,12 @@ a {
 
 
 /* miscellaneous */
+
+.delete {
+  a:hover {
+    color: #e55e5e;
+  }
+}
 
 .debug_dump {
   clear: both;

@@ -9,6 +9,28 @@ table
       tr
         td
           = link_to "#{user.name}", user_path(user)
-        - if user != current_user
+        - if user != current_user && user.in?(current_user.pending)
+          td 
+            .fa.fa-clock-o
+            |  Request pending
+        - elsif user != current_user && !user.in?(current_user.friends)
           td
-            = link_to "Add friend", friendships_path(:friend_id => user), method: :post
+            = link_to "Add friend", friendships_path(friend_id: user), method: :post
+        - elsif user != current_user && user.in?(current_user.friends)
+          td
+            .fa.fa-check-square
+            |  Friends
+          td.delete
+            = link_to "Unfriend", friendship_path(user), method: :delete
+        - elsif user == current_user
+          td It's you!
+
+- if current_user.requested_friendships.present?
+  h2 Pending friend requests
+  ul.pending-requests
+    - current_user.received_friendships.each do |friendship|
+      - if friendship.accepted == false
+        li
+          = friendship.user.name
+          = link_to "Accept",  friendship_path(id: friendship.id), method: "put"
+          = link_to "Decline", friendship_path(id: friendship.id), method: :delete, class: "delete"

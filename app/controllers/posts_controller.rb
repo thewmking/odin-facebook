@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   def index
     @comment = current_user.comments.build
     @post = current_user.posts.build
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
   end
 
   def update
