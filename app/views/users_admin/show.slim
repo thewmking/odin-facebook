@@ -1,3 +1,4 @@
+
 div.user-info
   .row
     | Name: 
@@ -5,3 +6,6 @@ div.user-info
   .row 
     | Email: 
     = @user.email
+
+div
+  = link_to 'Back', users_admin_index_path
