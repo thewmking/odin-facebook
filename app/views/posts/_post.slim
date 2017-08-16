@@ -30,16 +30,16 @@ li class="post-#{post.id} post"
         = link_to "delete post", post, method: :delete,
                                   data: { confirm: "You sure?" }
     br
-  .comments
     - if post.comments.present?
-      - post.comments.each do |c|
-        ul.comment
-          li
-            = c.user.name  
-            | :   
-            = c.content
-            .timestamp
-              | #{time_ago_in_words(c.created_at)} ago
+      .comments
+        - post.comments.each do |c|
+          ul.comment
+            li
+              = c.user.name  
+              | :   
+              = c.content
+              .timestamp
+                | #{time_ago_in_words(c.created_at)} ago
   = form_for(@comment) do |f|
     .field
       = f.hidden_field :post_id, :value => post.id

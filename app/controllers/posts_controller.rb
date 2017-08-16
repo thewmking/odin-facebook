@@ -18,7 +18,8 @@ class PostsController < ApplicationController
   def index
     @comment = current_user.comments.build
     @post = current_user.posts.build
-    @posts = Post.all.order(created_at: :desc)
+    #@posts = Post.all.order(created_at: :desc)
+    @posts = Post.where(user_id: post_user_ids).order(created_at: :desc)
   end
 
   def update
@@ -40,6 +41,14 @@ class PostsController < ApplicationController
     @post = current_user.posts.find_by(id: params[:id])
     flash[:danger] = "Not authorized"
     redirect_to request.referrer if @post.nil?
+  end
+
+  def post_user_ids
+    ids = []
+    current_user.friends.each do |f|
+      ids << f.id
+    end
+    ids << current_user.id
   end
 
 end
