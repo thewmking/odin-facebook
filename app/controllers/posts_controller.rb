@@ -19,7 +19,8 @@ class PostsController < ApplicationController
     @comment = current_user.comments.build
     @post = current_user.posts.build
     #@posts = Post.all.order(created_at: :desc)
-    @posts = Post.where(user_id: post_user_ids).order(created_at: :desc)
+    @posts = Post.where(user_id: post_user_ids).paginate(:page => params[:page]).
+      order(created_at: :desc)
   end
 
   def update
