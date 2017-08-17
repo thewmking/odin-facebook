@@ -7,9 +7,12 @@
       .email
         | Email: 
         = @user.email
-      .location
-        | Location:
-        /= @user.location
+      .hometown
+        | Hometown:  
+        = @user.hometown
+      .birthday
+        | Birthday:  
+        = @user.birthday
   - if @posts
     .col-md-6.post-feed
       = render @posts
