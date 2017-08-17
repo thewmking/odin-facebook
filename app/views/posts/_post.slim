@@ -6,7 +6,11 @@ li class="post" id="post-#{post.id}"
       | Posted #{time_ago_in_words(post.created_at)} ago.
   .content-links
     .post-content
-      = post.content  
+      - if post.content?
+        p
+          = post.content
+      - if post.photo_url?
+        = image_tag("#{post.photo_url}", class: "img-responsive")
     br
     .like-links
       - if current_user.likes?(post.id)

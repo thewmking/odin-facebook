@@ -5,5 +5,7 @@
   .form-fields
     = f.text_area :content, placeholder: "Your post goes here"
     br
+    = f.text_area :photo_url, placeholder: "Paste an image link"
+    br
     = f.submit "Post", class: "btn btn.primary"
   
