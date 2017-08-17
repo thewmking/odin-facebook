@@ -111,6 +111,21 @@ p {
 
 .navbar {
   background-color: #303841;
+  .open {
+    .dropdown-menu {
+      display: grid;
+      .divider {
+        background-color: #e3e3e3;
+      }
+    }
+  }
+}
+
+.notification {
+  color: #DDF5F7;
+  background-color: #e55e5e;
+  padding: 10px 14px 10px 14px;
+  border-radius: 25px;
 }
 
 
@@ -201,8 +216,11 @@ a {
     .content-links {
       padding: 0px 20px 10px 20px;
       .like-links {
-        a:hover {
-          color: #44679F;
+        .like:hover {
+          color: #18c991;
+        }
+        .unlike:hover {
+          color: #e55e5e;
         }
       }
     }

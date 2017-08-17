@@ -1,4 +1,4 @@
-li class="post-#{post.id} post"
+li class="post" id="post-#{post.id}"
   .post-user
     h4
       = link_to post.user.name, "/users/#{post.user.id}"
@@ -10,9 +10,9 @@ li class="post-#{post.id} post"
     br
     .like-links
       - if current_user.likes?(post.id)
-        = link_to "unlike", like_path(:id => post.id), method: :delete
+        = link_to "unlike", like_path(:id => post.id), method: :delete, class: "unlike"
       - else
-        = link_to "like", likes_path(:post_id => post.id), method: :post
+        = link_to "like", likes_path(:post_id => post.id), method: :post, class: "like"
     .likes
       - if post.likes.present?
         .fa.fa-thumbs-up
@@ -40,6 +40,11 @@ li class="post-#{post.id} post"
               = c.content
               .timestamp
                 | #{time_ago_in_words(c.created_at)} ago
+              .delete
+                - if c.user == current_user
+                  = link_to "delete comment", c, method: :delete,
+                    data: { confirm: "You sure?" }
+              br
   = form_for(@comment) do |f|
     .field
       = f.hidden_field :post_id, :value => post.id

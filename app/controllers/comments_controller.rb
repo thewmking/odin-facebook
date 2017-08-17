@@ -8,11 +8,17 @@ class CommentsController < ApplicationController
     else
       flash[:danger]  = "Error creating comment."
     end
-    redirect_to request.referrer
+    redirect_to root_url(anchor: "post-#{@comment.post.id}")
   end
 
   def destroy
-
+    @comment = Comment.find_by_id(comment_params)
+    if @comment.destroy
+      flash[:success] = "Comment created!"
+    else
+      flash[:danger]  = "Error creating comment."
+    end
+    redirect_to root_url(anchor: "post-#{@comment.post.id}")
   end
 
   private
