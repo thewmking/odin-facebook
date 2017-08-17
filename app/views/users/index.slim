@@ -7,6 +7,8 @@ table
   tbody
     - @users.each do |user|
       tr
+        td 
+          = gravatar_for user, size: 50
         td
           = link_to "#{user.name}", user_path(user)
         - if user != current_user && user.in?(current_user.pending)

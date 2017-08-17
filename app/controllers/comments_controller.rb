@@ -5,10 +5,12 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     if @comment.save
       flash[:success] = "Comment created!"
+      redirect_to root_url(anchor: "post-#{@comment.post.id}")
     else
       flash[:danger]  = "Error creating comment."
+      redirect_to root_url
     end
-    redirect_to root_url(anchor: "post-#{@comment.post.id}")
+
   end
 
   def destroy

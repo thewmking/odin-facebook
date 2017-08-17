@@ -1,7 +1,15 @@
-div.user-info
-  .row
-    | Name: 
-    = @user.name
-  .row 
-    | Email: 
-    = @user.email
+.row
+  aside.col-md-6
+    section.user-info
+      h1
+        = gravatar_for @user
+        = @user.name
+      .email
+        | Email: 
+        = @user.email
+      .location
+        | Location:
+        /= @user.location
+  - if @posts
+    .col-md-6.post-feed
+      = render @posts

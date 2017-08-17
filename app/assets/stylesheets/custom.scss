@@ -150,7 +150,7 @@ a {
 /* post feed */
 
 .post-feed {
-  width: 500px;
+  /*width: 500px;*/
   list-style: none;
   display: block;
 
@@ -170,8 +170,8 @@ a {
   }
 
   .new_post {
-    width: 500px;
-    display: inline-grid;
+    /*width: 500px;*/
+    display: grid;
     border: 1px solid #e3e3e3;
     background-color: #fafafa;
 
@@ -183,15 +183,15 @@ a {
     }
 
     .form-fields {
-      display: inline-grid;
+      display: grid;
       padding: 0px 20px 10px 20px;
     }
   }
 
   .post {
-    width: 500px;
+    /*width: 500px;*/
     margin-top: 20px;
-    display: inline-grid;
+    display: grid;
     border: 1px solid #e3e3e3;
     background-color: #fafafa;
 
@@ -214,7 +214,7 @@ a {
       border-bottom-right-radius: 15px;
     }
     .content-links {
-      padding: 0px 20px 10px 20px;
+      padding: 0px 20px 0px 20px;
       .like-links {
         .like:hover {
           color: #18c991;
@@ -227,13 +227,61 @@ a {
     .comments {
       background-color: #fff;
       padding: 20px;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      border-top: 1px dashed #e3e3e3;
+      border-left: 1px dashed #e3e3e3;
+      border-right: 1px dashed #e3e3e3;
     }
     .new_comment {
-      padding: 10px 20px 10px 20px;
       border-top: 1px dashed #e3e3e3;
     }
+    .comment-fields {
+      display: grid;
+      padding: 10px 20px 10px 20px;
+    }
   }
+}
+/*
+li.like {
+  display: grid;
+}
+*/
+/* users show */
 
+aside {
+  section.user-info {
+    margin-top: 20px;
+  }
+  section {
+    padding: 10px 0;
+    margin-top: 20px;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+.gravatar_edit {
+  margin-top: 15px;
 }
 
 

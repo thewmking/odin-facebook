@@ -7,6 +7,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if @user
+      @posts = @user.posts
+    end
+    if @posts
+      @comment = current_user.comments.build
+    end
   end
 
   private

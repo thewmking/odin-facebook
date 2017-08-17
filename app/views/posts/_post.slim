@@ -22,8 +22,9 @@ li class="post" id="post-#{post.id}"
           | The following users liked this post:
           ul
             - post.likes.each do |l|
-              li
-                = l.user.name
+              li.like
+                = link_to l.user.name, l.user
+                br
     br
     - if current_user == post.user
       span.delete
@@ -46,7 +47,8 @@ li class="post" id="post-#{post.id}"
                     data: { confirm: "You sure?" }
               br
   = form_for(@comment) do |f|
-    .field
+    .comment-fields
       = f.hidden_field :post_id, :value => post.id
       = f.text_area :content, placeholder: "Your comment goes here"
-    = f.submit "Comment", class: "btn btn.primary"
+      br
+      = f.submit "Comment", class: "btn btn.primary"
