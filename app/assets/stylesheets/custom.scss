@@ -284,10 +284,17 @@ aside {
 }
 
 /* forms */
-.form-control {
-  /*width:*/
+.fb-login {
+  float: left;
+  background-color: #4267B2;
+  border-radius: 5px;
+  margin-top: 10px;
+  a {
+    font-size: 1.2em;
+    padding: 10px;
+    color: #FFF;
+  }
 }
-
 
 /* miscellaneous */
 
