@@ -1,6 +1,8 @@
 class UsersAdminController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
   before_action :authenticate_user!
+  before_action :verify_admin
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -60,5 +62,13 @@ class UsersAdminController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.fetch(:user, {}).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    # Only allow admin user to access users admin
+    def verify_admin
+      unless current_user.admin?
+        flash[:danger] = "Access denied"
+        redirect_to root_path
+      end
     end
 end

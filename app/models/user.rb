@@ -1,6 +1,8 @@
 class User < ApplicationRecord
+  enum role: [:user, :admin]
+
   # Include default devise modules. Others available are:
-  # :lockable, :timeoutable and :omniauthable
+  # :lockable, :timeoutable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable, :omniauthable,
          :omniauth_providers => [:facebook]
@@ -18,6 +20,10 @@ class User < ApplicationRecord
            through: :friendships, source: :friend
   has_many :requested_friendships, -> { where(friendships: { accepted: false }) },
            through: :received_friendships, source: :user
+
+  def set_default_role
+    self.role ||= :user
+  end
 
   def likes?(post_id)
     liked_post_ids = []
