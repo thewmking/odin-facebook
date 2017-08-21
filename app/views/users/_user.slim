@@ -1,0 +1,20 @@
+tr
+  td 
+    = gravatar_for user
+  td
+    = link_to "#{user.name}", user_path(user)
+  - if user != current_user && user.in?(current_user.pending)
+    td 
+      .fa.fa-clock-o
+      |  Request pending
+  - elsif user != current_user && !user.in?(current_user.friends)
+    td
+      = link_to "Add friend", friendships_path(friend_id: user), method: :post
+  - elsif user != current_user && user.in?(current_user.friends)
+    td
+      .fa.fa-check-square
+      |  Friends
+    td.delete
+      = link_to "Unfriend", friendship_path(user), method: :delete
+  - elsif user == current_user
+    td It's you!

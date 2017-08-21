@@ -1,5 +1,6 @@
 li class="post" id="post-#{post.id}"
   .post-user
+    = gravatar_for post.user, size: 50
     h4
       = link_to post.user.name, "/users/#{post.user.id}"
     .timestamp

@@ -20,7 +20,9 @@ class User < ApplicationRecord
            through: :friendships, source: :friend
   has_many :requested_friendships, -> { where(friendships: { accepted: false }) },
            through: :received_friendships, source: :user
-
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", mini: "50x50>"},
+                    default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   def set_default_role
     self.role ||= :user
   end
@@ -64,4 +66,6 @@ end
       end
     end
   end
+
+  self.per_page = 10
 end

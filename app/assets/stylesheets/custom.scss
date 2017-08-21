@@ -86,6 +86,12 @@ p {
   }
 }
 
+input[type="submit"] {
+  background-color: #3B577D;
+  border: none;
+  color: #FFF;
+}
+
 /* header */
 
 #logo {
@@ -294,6 +300,13 @@ aside {
     padding: 10px;
     color: #FFF;
   }
+}
+
+.confirm {
+  background-color: #4267B2;
+  color: #FFF;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 /* miscellaneous */

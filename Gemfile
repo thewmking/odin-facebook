@@ -29,6 +29,7 @@ gem 'bootstrap-sass',          '3.3.6'
 gem 'font-awesome-rails'
 gem 'omniauth-facebook'
 gem 'figaro'
+gem 'paperclip', "~> 5.0.0"
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -58,6 +59,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem "letter_opener"
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
