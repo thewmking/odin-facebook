@@ -31,7 +31,7 @@ li class="post" id="post-#{post.id}"
                 = link_to l.user.name, l.user
                 br
     br
-    - if current_user == post.user
+    - if current_user == post.user || current_user.is_admin?
       span.delete
         = link_to "delete post", post, method: :delete,
                                   data: { confirm: "You sure?" }
@@ -41,7 +41,7 @@ li class="post" id="post-#{post.id}"
         - post.comments.each do |c|
           ul.comment
             li
-              = c.user.name  
+              = link_to c.user.name, "/users/#{c.user.id}"
               | :   
               = c.content
               .timestamp

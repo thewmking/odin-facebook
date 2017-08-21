@@ -39,9 +39,15 @@ class PostsController < ApplicationController
   end
 
   def correct_user
-    @post = current_user.posts.find_by(id: params[:id])
-    flash[:danger] = "Not authorized"
-    redirect_to request.referrer if @post.nil?
+    if current_user.is_admin?
+      @post = Post.find_by_id(params[:id])
+    else
+      @post = current_user.posts.find_by(id: params[:id])
+    end
+    if @post.nil?
+      flash[:danger] = "Not authorized"
+      redirect_to request.referrer
+    end
   end
 
   def post_user_ids

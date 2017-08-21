@@ -4,8 +4,8 @@ validates :content,   presence: { if: -> {:photo_url.blank?}},
            length: { maximum: 5000 }
 
 belongs_to :user
-has_many :likes
-has_many :comments
+has_many :likes, dependent: :destroy
+has_many :comments, dependent: :destroy
 
 self.per_page = 10
 
