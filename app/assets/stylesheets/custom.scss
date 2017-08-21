@@ -86,10 +86,10 @@ p {
   }
 }
 
-input[type="submit"] {
-  background-color: #3B577D;
-  border: none;
-  color: #FFF;
+.btn-red {
+  &:hover {
+    background-color: #e55e5e;
+  }
 }
 
 /* header */
@@ -308,6 +308,24 @@ aside {
   padding: 10px;
   border-radius: 5px;
 }
+
+.avatar-box {
+  display: flex;
+}
+
+.divider {
+  background-color: #e3e3e3;
+  height: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.section-head {
+  background-color: #F6F7F9;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 
 /* miscellaneous */
 

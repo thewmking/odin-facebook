@@ -1,6 +1,6 @@
 tr
   td 
-    = gravatar_for user
+    = link_to( gravatar_for(user), user_path(user) ) 
   td
     = link_to "#{user.name}", user_path(user)
   - if user != current_user && user.in?(current_user.pending)

@@ -1,6 +1,6 @@
 li class="post" id="post-#{post.id}"
   .post-user
-    = gravatar_for post.user, size: 50
+    = link_to( gravatar_for(post.user, size: 50), "/users/#{post.user.id}")
     h4
       = link_to post.user.name, "/users/#{post.user.id}"
     .timestamp
