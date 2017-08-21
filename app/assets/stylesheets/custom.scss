@@ -242,7 +242,9 @@ a {
       border-top: 1px dashed #e3e3e3;
     }
     .comment-fields {
-      display: grid;
+      textarea {
+        width: 100%;
+      }
       padding: 10px 20px 10px 20px;
     }
   }
