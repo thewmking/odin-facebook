@@ -3,7 +3,7 @@ Rails.application.routes.draw do
                                        omniauth_callbacks: 'users/omniauth_callbacks' }
   resources  :users,       only: [:index, :show]
   resources  :users_admin
-  resources  :posts,       only: [:index, :create, :destroy]
+  resources  :posts
   resources  :likes,       only: [:create, :destroy]
   resources  :comments,    only: [:create, :destroy]
   resources  :friendships, only: [:create, :update, :destroy]
