@@ -1,19 +1,20 @@
-h1 Users
-
-table
-  thead
-    tr
-      th colspan="3"
-  tbody
-    = render @users 
-    = will_paginate @users
-
 - if current_user.requested_friendships.present?
-  h2 Pending friend requests
-  ul.pending-requests
-    - current_user.received_friendships.each do |friendship|
-      - if friendship.accepted == false
-        li
-          = friendship.user.name
-          = link_to "Accept",  friendship_path(id: friendship.id), method: "put"
-          = link_to "Decline", friendship_path(id: friendship.id), method: :delete, class: "delete"
+  .col-md-6
+    h2 Pending friend requests
+    ul.pending-requests
+      - current_user.received_friendships.each do |friendship|
+        - if friendship.accepted == false
+          li
+            = friendship.user.name
+            = link_to "Accept",  friendship_path(id: friendship.id), method: "put"
+            = link_to "Decline", friendship_path(id: friendship.id), method: :delete, class: "delete"
+
+.col-md-6
+  h2 All users
+  table
+    thead
+      tr
+        th colspan="3"
+    tbody
+      = render @users
+  = will_paginate @users

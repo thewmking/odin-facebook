@@ -5,16 +5,31 @@
         = gravatar_for @user
         = @user.name
       .email
-        | Email: 
+        | Email:
         = @user.email
       .hometown
-        | Hometown:  
+        | Hometown:
         = @user.hometown
       .birthday
-        | Birthday:  
+        | Birthday:
         = @user.birthday
       - if @user == current_user
         = link_to "Edit profile", edit_user_registration_path(current_user)
-  - if @posts
+    - if @user != current_user && @user.in?(current_user.pending)
+      td
+        .fa.fa-clock-o
+        |  Request pending
+    - elsif @user != current_user && !@user.in?(current_user.friends)
+      td
+        = link_to "Add friend", friendships_path(friend_id: @user), method: :post
+    - elsif @user != current_user && @user.in?(current_user.friends)
+      td
+        .fa.fa-check-square
+        |  Friends
+      td.delete
+        = link_to "Unfriend", friendship_path(@user), method: :delete
+    - elsif @user == current_user
+      td It's you!
+  - if @posts && current_user.in?(@user.friends)
     .col-md-6.post-feed
       = render @posts

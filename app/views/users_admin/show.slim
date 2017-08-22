@@ -1,11 +1,23 @@
-
-div.user-info
-  .row
-    | Name: 
-    = @user.name
-  .row 
-    | Email: 
-    = @user.email
+.row
+  aside.col-md-6
+    section.user-info
+      h1
+        = gravatar_for @user
+        = @user.name
+      .email
+        | Email:
+        = @user.email
+      .hometown
+        | Hometown:
+        = @user.hometown
+      .birthday
+        | Birthday:
+        = @user.birthday
+      - if @user == current_user
+        = link_to "Edit profile", edit_user_registration_path(current_user)
+  - if @posts
+    .col-md-6.post-feed
+      = render @posts
 
 div
-  = link_to 'Back', users_admin_index_path
+  = link_to 'Back to users admin', users_admin_index_path
