@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-validates :photo_url, presence: { if: -> {:content.blank?}}
+validates :photo_url, presence: { if: -> {:content.blank?}}, format: { with: /\.(jpg|jpeg|gif|png)\z/}
 validates :content,   presence: { if: -> {:photo_url.blank?}},
            length: { maximum: 5000 }
 

@@ -10,7 +10,8 @@ class PostsController < ApplicationController
     if @post.save
       flash[:success] = "Post created!"
     else
-      flash[:danger] = "Error creating post."
+      flash[:danger] = "Error creating post. If you're trying to post a picture,
+                        please make sure the link ends in a valid format."
     end
     redirect_to request.referrer
   end
