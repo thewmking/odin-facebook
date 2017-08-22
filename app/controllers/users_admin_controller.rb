@@ -2,7 +2,7 @@ class UsersAdminController < ApplicationController
 
   before_action :authenticate_user!
   before_action :verify_admin
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update]
 
   def index
     @users = User.all
@@ -35,20 +35,20 @@ class UsersAdminController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+      @user.avatar = nil
+      if @user.save
+        format.html { redirect_to users_admin_index_path, notice: 'User was successfully updated.' }
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html { redirect_to users_admin_index_path, notice: 'User was successfully updated.' }
       end
     end
   end
 
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_admin_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_admin_index_path, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
