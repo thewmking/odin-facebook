@@ -1,0 +1,6 @@
+- if @photo_posts
+  h3 Recent photos
+  - @photo_posts.each do |post|
+    - if post.photo_url.present?
+      .col-xs-6.photo-square
+        = link_to(image_tag(post.photo_url, class: ""), "/#post-#{post.id}")

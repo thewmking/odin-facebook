@@ -22,6 +22,8 @@ class PostsController < ApplicationController
     #@posts = Post.all.order(created_at: :desc)
     @posts = Post.where(user_id: post_user_ids).paginate(:page => params[:page]).
       order(created_at: :desc)
+    @photo_posts = Post.where(user_id: post_user_ids).where.not(photo_url: nil).
+      limit(21).order(created_at: :desc)
   end
 
   def edit
