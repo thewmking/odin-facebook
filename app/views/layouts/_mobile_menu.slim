@@ -1,0 +1,22 @@
+ul.navigation
+  li.nav-item
+    = link_to "Home", root_path
+  - if logged_in?
+    li.nav-item
+      = link_to "Posts", posts_path
+    li.nav-item
+      = link_to "Users", users_path
+    li.nav-item
+      = link_to "Settings", edit_user_registration_path(current_user)
+    li.nav-item
+      = link_to "Profile", "/users/#{current_user.id}"
+    li.nav-item
+      = link_to "Log out", destroy_user_session_path, method: :delete
+  - else
+    li.nav-item
+      = link_to "Sign in", new_user_session_path
+    li.nav-item
+      = link_to "Sign up", new_user_registration_path
+
+input.nav-trigger id="nav-trigger" type="checkbox"
+label for="nav-trigger" class="fa fa-bars"

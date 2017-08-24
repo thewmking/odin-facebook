@@ -1,12 +1,10 @@
 .navbar.navbar-fixed-top.navbar-inverse
   .container
-    #logo
-      = link_to "odin-social", root_path
     nav
+      #logo
+        = link_to "odin-social", root_path
       ul.nav.navbar-nav.navbar-right
         - if logged_in?
-          li 
-            = link_to "Home",  root_path
           li
             = link_to "Posts", posts_path
           li
@@ -35,5 +33,5 @@
         - else
           li
             = link_to "Sign in", new_user_session_path
-          li 
+          li
             = link_to "Sign up", new_user_registration_path

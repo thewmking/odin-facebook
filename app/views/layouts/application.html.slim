@@ -4,15 +4,19 @@ html
     title
       | Odinsocial
     = render 'layouts/rails_default'
+    meta name="viewport" content="width=device-width"
   body
     = render 'layouts/fb'
     = render 'layouts/header'
-    .container
-      - flash.each do |message_type, message|
-        div class="alert alert-#{message_type}"
-          = message
-    = yield
-    - if Rails.env.development?
-      = debug(params)
-      div style="height: 300px"
-      = console
+    = render 'layouts/mobile_menu'
+    .site-wrap
+      .container
+        - flash.each do |message_type, message|
+          div class="alert alert-#{message_type}"
+            = message
+      = render 'layouts/mobile_header'
+      = yield
+      - if Rails.env.development?
+        = debug(params)
+        div style="height: 300px"
+        = console

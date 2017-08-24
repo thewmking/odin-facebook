@@ -17,6 +17,7 @@ $gray-medium-light: #eaeaea;
 
 body {
   padding-top: 65px;
+  overflow-x: hidden;
 }
 
 section {
@@ -79,7 +80,8 @@ p {
 
 .btn {
   background-color: #3B577D;
-  color: #FFF;
+  color: #F7F7F7;
+  transition: color 0.2s, background 0.5s;
   &:hover {
     background-color: #44679F;
     color: #fff;
@@ -87,12 +89,103 @@ p {
 }
 
 .btn-red {
+  transition: color 0.2s, background 0.5s;
   &:hover {
     background-color: #e55e5e;
   }
 }
 
 /* header */
+
+ //* mobile header *//
+.mobile-header {
+  background-color: #303841;
+  #logo {
+    padding-bottom: 10px;
+  }
+}
+
+.navigation {
+  list-style: none;
+  display: block;
+  background: #000;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  padding-top: 43px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.site-wrap {
+  min-width: 100%;
+  min-height: 100%;
+  background-color: #FFF;
+  position: relative;
+  top: 0;
+  bottom: 100%;
+  left: 0;
+  z-index: 1;
+}
+
+.nav-item {
+  /* non-critical appearance styles */
+  width: 200px;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #000;
+}
+
+.nav-item a {
+  /* non-critical appearance styles */
+  width: 100%;
+  display: block;
+  padding: 1em;
+  background: #000;
+  color: white;
+  font-size: 1.2em;
+  text-decoration: none;
+  transition: color 0.2s, background 0.5s;
+  &:hover {
+    color: #DAE4F0;
+    background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(63,127,191,0.65) 100%);
+    //background-color: #3B587B;
+  }
+}
+
+.nav-trigger {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
+label[for="nav-trigger"] {
+  position: fixed;
+  top: 10px;
+  left: 15px;
+  z-index: 2000;
+  width: 30px;
+  height: 30px;
+  color: #FFF;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.nav-trigger:checked + label {
+  left: 215px;
+}
+
+.nav-trigger:checked ~ .site-wrap {
+  left: 200px;
+  box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+}
+
+.nav-trigger + label, .site-wrap {
+  transition: left 0.2s;
+}
+
+//* main header *//
 
 #logo {
   float: left;
@@ -107,6 +200,7 @@ p {
     text-decoration: none;
   }
   a {
+    transition: color 0.2s, background 0.5s;
     &:hover {
       color: #C0D9E5;
       background-color: #303841;
@@ -143,8 +237,8 @@ a {
     padding: 0 10px;
     border-left: 1px solid $gray-lighter;
     color: gray;
+    transition: color 0.2s, background 0.5s;
     &:first-child {
-
       border: 0;
     }
     &:hover {
@@ -172,6 +266,10 @@ a {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     @include box_sizing;
+    transition: padding-bottom .5s;
+    &:focus {
+      padding-bottom: 30px;
+    }
   }
 
   .new_post {
@@ -341,6 +439,7 @@ aside {
   border-radius: 5px;
   margin-top: 10px;
   a {
+    transition: color 0.2s, background 0.5s;
     font-size: 1.2em;
     padding: 10px;
     color: #FFF;
@@ -390,8 +489,9 @@ aside {
 
 /* macro media queries */
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   body {
+    padding-top: 43px;
     margin-left: 0px;
     margin-right: 0px;
   }
@@ -399,4 +499,28 @@ aside {
     padding-left: 0px;
     padding-right: 0px;
   }
+  .navbar.navbar-fixed-top.navbar-inverse {
+    visibility: hidden;
+  }
+
+  .mobile-header {
+    visibility: visible;
+  }
+
+  #logo {
+    float: right;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-header {
+    visibility: hidden;
+  }
+  .navigation {
+    visibility: hidden;
+  }
+  label[for="nav-trigger"] {
+    visibility: hidden;
+  }
+
 }
