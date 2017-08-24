@@ -1,20 +1,16 @@
-.row
-  aside.col-md-6
-    section.user-info
+.container
+  aside.col-md-5.user-info
+    section
       h1
         = gravatar_for @user
         = @user.name
       .email
-        | Email:
-        = @user.email
+        | Email: #{@user.email}
       .hometown
-        | Hometown:
-        = @user.hometown
+        | Hometown: #{@user.hometown}
       .birthday
-        | Birthday:
-        = @user.birthday
-      - if @user == current_user
-        = link_to "Edit profile", edit_user_registration_path(current_user)
+        | Birthday: #{@user.birthday}
+
     - if @user != current_user && @user.in?(current_user.pending)
       td
         .fa.fa-clock-o
@@ -29,7 +25,9 @@
       td.delete
         = link_to "Unfriend", friendship_path(@user), method: :delete
     - elsif @user == current_user
-      td It's you!
-  - if @posts && current_user.in?(@user.friends)
+      td
+        = link_to "Edit profile", edit_user_registration_path(current_user)
+    br
+  - if @posts && current_user.in?(@user.friends) || current_user == @user
     .col-md-6.post-feed
       = render @posts
