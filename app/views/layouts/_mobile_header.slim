@@ -1,3 +1,8 @@
 .mobile-header.navbar-fixed-top
   #logo
     = link_to "odin-social", root_path
+  - if logged_in?
+    - if current_user.requested_friendships.present?
+      = link_to users_path
+        b.notification
+          = current_user.requested_friendships.count

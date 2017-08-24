@@ -523,7 +523,7 @@ aside.user-info {
   #logo {
     float: right;
   }
-  
+
   tbody.users {
     img.gravatar {
       width: 75px;
@@ -536,8 +536,12 @@ aside.user-info {
     margin-right: 10px;
     input.form-control {
       height: 50px;
-
     }
+  }
+  .notification {
+    position: relative;
+    left: 35px;
+    top: 13px;
   }
 }
 
