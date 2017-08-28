@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821142717) do
+ActiveRecord::Schema.define(version: 20170824203625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,20 @@ ActiveRecord::Schema.define(version: 20170821142717) do
     t.index ["post_id"], name: "index_likes_on_post_id", using: :btree
     t.index ["user_id", "created_at"], name: "index_likes_on_user_id_and_created_at", using: :btree
     t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
+  end
+
+  create_table "mentions", force: :cascade do |t|
+    t.string   "mentionee_type"
+    t.integer  "mentionee_id"
+    t.string   "mentioner_type"
+    t.integer  "mentioner_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["mentionee_id", "mentionee_type", "mentioner_id", "mentioner_type"], name: "mentions_mentionee_mentioner_idx", unique: true, using: :btree
+    t.index ["mentionee_id", "mentionee_type"], name: "mentions_mentionee_idx", using: :btree
+    t.index ["mentionee_type", "mentionee_id"], name: "index_mentions_on_mentionee_type_and_mentionee_id", using: :btree
+    t.index ["mentioner_id", "mentioner_type"], name: "mentions_mentioner_idx", using: :btree
+    t.index ["mentioner_type", "mentioner_id"], name: "index_mentions_on_mentioner_type_and_mentioner_id", using: :btree
   end
 
   create_table "posts", force: :cascade do |t|

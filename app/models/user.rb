@@ -7,6 +7,8 @@ class User < ApplicationRecord
          :trackable, :validatable, :confirmable, :omniauthable,
          :omniauth_providers => [:facebook]
 
+  act_as_mentionee
+  
   has_many :posts,    dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes,    dependent: :destroy

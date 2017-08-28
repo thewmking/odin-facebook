@@ -121,6 +121,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
+    mention_system (0.1.0)
+      rails (>= 5.0, < 5.2)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -271,6 +273,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   listen (~> 3.0.5)
+  mention_system
   omniauth-facebook
   paperclip (~> 5.0.0)
   pg (~> 0.18)
