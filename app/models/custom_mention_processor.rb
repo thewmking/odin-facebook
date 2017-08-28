@@ -1,7 +1,7 @@
 class CustomMentionProcessor < MentionSystem::MentionProcessor
 
-  def extract_mentioner_content(post)
-    post.content.downcase
+  def extract_mentioner_content(mentioner)
+    mentioner.content.downcase
   end
 
   def find_mentionees_by_handles(*handles)

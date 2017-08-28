@@ -12,10 +12,12 @@ class User < ApplicationRecord
 
   act_as_mentionee
 
-  has_many :posts,    dependent: :destroy
-  has_many :comments, dependent: :destroy
-  has_many :likes,    dependent: :destroy
-  has_many :friendships, dependent: :destroy
+  has_many :posts,         dependent: :destroy
+  has_many :comments,      dependent: :destroy
+  has_many :likes,         dependent: :destroy
+  has_many :friendships,   dependent: :destroy
+  has_many :notifications, dependent: :destroy
+
   has_many :received_friendships, class_name: "Friendship", foreign_key: "friend_id"
   has_many :active_friends,        -> { where(friendships: { accepted: true }) },
            through: :friendships, source: :friend
@@ -25,11 +27,11 @@ class User < ApplicationRecord
            through: :friendships, source: :friend
   has_many :requested_friendships, -> { where(friendships: { accepted: false }) },
            through: :received_friendships, source: :user
+
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", mini: "50x50>"},
                     default_url: "/images/:style/missing.png"
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
-  #validates :username, format: { without: /\s/ }
 
   def set_default_role
     self.role ||= :user

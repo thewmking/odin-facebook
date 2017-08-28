@@ -1,11 +1,17 @@
 class Comment < ApplicationRecord
 
-act_as_mentioner
+  after_save :create_mentions
 
-belongs_to :post
-belongs_to :user
+  act_as_mentioner
 
-validates  :content, presence: true
+  belongs_to :post
+  belongs_to :user
 
+  validates  :content, presence: true
+
+  def create_mentions
+    m = CustomMentionProcessor.new
+    m.process_mentions(self)
+  end
 
 end

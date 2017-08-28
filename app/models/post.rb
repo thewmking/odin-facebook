@@ -13,6 +13,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   self.per_page = 10
 
@@ -20,5 +21,4 @@ class Post < ApplicationRecord
     m = CustomMentionProcessor.new
     m.process_mentions(self)
   end
-
 end

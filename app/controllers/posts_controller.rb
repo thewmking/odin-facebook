@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: :destroy
+  after_action  :mention_notifications, only: [:create, :update]
 
   def new
   end
@@ -19,7 +20,6 @@ class PostsController < ApplicationController
   def index
     @comment = current_user.comments.build
     @post = current_user.posts.build
-    #@posts = Post.all.order(created_at: :desc)
     @posts = Post.where(user_id: post_user_ids).paginate(:page => params[:page]).
       order(created_at: :desc)
     @photo_posts = Post.where(user_id: post_user_ids).where.not(photo_url: nil).
@@ -68,4 +68,15 @@ class PostsController < ApplicationController
     ids << current_user.id
   end
 
+  def mention_notifications
+    if @post.mentionees.present?
+      @post.mentionees.each do |m|
+        return if m.mentionee_id == current_user.id
+        Notification.create(user_id: m.mentionee_id,
+                            notified_by_id: current_user.id,
+                            post_id: @post.id,
+                            notice_type: 'post_mention')
+      end
+    end
+  end
 end
