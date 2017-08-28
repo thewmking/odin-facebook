@@ -2,7 +2,7 @@ li class="post" id="post-#{post.id}"
   .post-user
     = link_to( gravatar_for(post.user, size: 50), "/users/#{post.user.id}")
     h4
-      = link_to post.user.name, "/users/#{post.user.id}"
+      = link_to post.user.username, "/users/#{post.user.id}"
     .timestamp
       | Posted #{time_ago_in_words(post.created_at)} ago.
   .content-links
@@ -28,7 +28,7 @@ li class="post" id="post-#{post.id}"
           ul
             - post.likes.each do |l|
               li.like
-                = link_to l.user.name, l.user
+                = link_to l.user.username, l.user
                 br
     br
     - if current_user == post.user || current_user.is_admin?
@@ -43,7 +43,7 @@ li class="post" id="post-#{post.id}"
         - post.comments.each do |c|
           ul.comment
             li
-              = link_to "#{c.user.name}:", "/users/#{c.user.id}"
+              = link_to "#{c.user.username}:", "/users/#{c.user.id}"
               .comment-content
                 = c.content
               .timestamp

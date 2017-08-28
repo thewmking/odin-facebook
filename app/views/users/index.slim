@@ -5,7 +5,7 @@
       - current_user.received_friendships.each do |friendship|
         - if friendship.accepted == false
           li
-            = friendship.user.name
+            = friendship.user.username
             = link_to "Accept",  friendship_path(id: friendship.id), method: "put"
             = link_to "Decline", friendship_path(id: friendship.id), method: :delete, class: "delete"
 

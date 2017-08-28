@@ -10,7 +10,7 @@
 30.times do
   name = Faker::Zelda.unique.character
   User.create(
-    name: name,
+    username: name,
     email: Faker::Internet.safe_email(name),
     password: "foobar",
     password_confirmation: "foobar",

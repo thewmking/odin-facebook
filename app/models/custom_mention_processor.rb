@@ -5,6 +5,6 @@ class CustomMentionProcessor < MentionSystem::MentionProcessor
   end
 
   def find_mentionees_by_handles(*handles)
-    User.where(name: handles)
+    User.where(username: handles)
   end
 end

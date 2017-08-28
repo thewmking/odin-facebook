@@ -10,7 +10,7 @@ table
         td
           = link_to( gravatar_for(user, size: 50), "/users/#{user.id}")
         td
-          = link_to "#{user.name}", users_admin_path(user)
+          = link_to "#{user.username}", users_admin_path(user)
         td
           = link_to 'Delete user avatar', users_admin_path(user), method: :put, class: "btn btn-red"
         td
