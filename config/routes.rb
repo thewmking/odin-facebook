@@ -7,8 +7,11 @@ Rails.application.routes.draw do
   resources  :likes,       only: [:create, :destroy]
   resources  :comments,    only: [:create, :destroy]
   resources  :friendships, only: [:create, :update, :destroy]
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources  :notifications
 
-root to: "posts#index"
+  get 'notifications/:id/link_through', to: 'notifications#link_through',
+                                        as: :link_through
+
+  root to: "posts#index"
 
 end

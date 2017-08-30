@@ -1,11 +1,13 @@
 class FriendshipsController < ApplicationController
   before_action :check_user
-  #before_action :set_friendship, only: [:update, :destroy]
 
   def create
     @friendship = current_user.friendships.build(friend_id: params[:friend_id])
     if @friendship.save
       flash[:success] = "Friend request sent"
+      Notification.create(user_id: @friendship.friend_id,
+                          notified_by_id: current_user.id,
+                          notice_type: 'friend request')
     else
       flash[:danger] = "Error sending friend request"
     end
@@ -13,11 +15,13 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    #@friendship = User.where(id: params[:id]).friendships.find_by(friend_id: current_user.id)
     @friendship ||= Friendship.find_by(id: params[:id])
     @friendship.update(accepted: true)
     if @friendship.save
       flash[:success] = "Successfully confirmed friend"
+      Notification.create(user_id: @friendship.user_id,
+                          notified_by_id: current_user.id,
+                          notice_type: 'friend accept')
     else
       flash[:danger] = "Error confirming friend."
     end
@@ -34,11 +38,6 @@ class FriendshipsController < ApplicationController
   end
 
   private
-
-    def set_friendship
-      @friendship = Friendship.find_by(friend_id: params[:id], user_id: current_user.id)
-      @friendship ||= Friendship.find_by(id: params[:id])
-    end
 
     def check_user
       friend = User.where(id: params[:friend_id]).first

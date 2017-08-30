@@ -4,6 +4,10 @@ class LikesController < ApplicationController
     @like = current_user.likes.build(post_id: params[:post_id])
     @like.save
     redirect_to root_url(anchor: "post-#{@like.post.id}")
+    Notification.create(user_id: @like.post.user.id,
+                        notified_by_id: current_user.id,
+                        post_id: @like.post.id,
+                        notice_type: 'like')
   end
 
   def destroy

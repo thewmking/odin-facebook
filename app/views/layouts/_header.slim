@@ -9,14 +9,7 @@
             = link_to "Posts", posts_path
           li
             = link_to "Users", users_path
-          - if current_user.requested_friendships.present?
-            li.dropdown
-              a.dropdown-toggle href="#" data-toggle="dropdown"
-                b.notification
-                  = current_user.requested_friendships.count
-              ul.dropdown-menu
-                li
-                  = link_to "Friend requests", users_path
+          = render 'notifications/notification_dropdown'
           li.dropdown
             a.dropdown-toggle href="#" data-toggle="dropdown"
               | Account

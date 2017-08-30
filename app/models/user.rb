@@ -81,6 +81,10 @@ end
     end
   end
 
+  def active_notifications
+    self.notifications.where(read: false)
+  end
+
   self.per_page = 10
 
   private

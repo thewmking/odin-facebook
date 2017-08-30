@@ -2,7 +2,7 @@
   #logo
     = link_to "odin-social", root_path
   - if logged_in?
-    - if current_user.requested_friendships.present?
-      = link_to users_path
+    - if current_user.active_notifications.present?
+      = link_to notifications_path
         b.notification
-          = current_user.requested_friendships.count
+          = current_user.active_notifications.count

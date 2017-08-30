@@ -26,6 +26,11 @@ class PostsController < ApplicationController
       limit(21).order(created_at: :desc)
   end
 
+  def show
+    @post = Post.find(params[:id])
+    @comment = current_user.comments.build
+  end
+
   def edit
     @post = Post.find(params[:id])
   end

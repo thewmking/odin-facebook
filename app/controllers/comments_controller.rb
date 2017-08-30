@@ -7,28 +7,28 @@ class CommentsController < ApplicationController
     if @comment.save
       comment_notification @comment.post, @comment
       flash[:success] = "Comment created!"
-      redirect_to root_url(anchor: "post-#{@comment.post.id}")
+      redirect_to post_path(@comment.post)
     else
       flash[:danger]  = "Error creating comment."
-      redirect_to root_url
+      redirect_to post_path(@comment.post)
     end
 
   end
 
   def destroy
-    @comment = Comment.find_by_id(comment_params)
+    @comment = Comment.find_by_id(params[:id])
     if @comment.destroy
-      flash[:success] = "Comment created!"
+      flash[:success] = "Comment deleted!"
     else
       flash[:danger]  = "Error creating comment."
     end
-    redirect_to root_url(anchor: "post-#{@comment.post.id}")
+    redirect_to root_url
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:content, :post_id)
+    params.require(:comment).permit(:content, :post_id, :id)
   end
 
   def comment_notification(post, comment)

@@ -1,0 +1,8 @@
+- if current_user.active_notifications.present?
+  li.dropdown
+    a.dropdown-toggle href="#" data-toggle="dropdown"
+      b.notification
+        = current_user.active_notifications.count
+    ul.dropdown-menu
+      li
+        = render current_user.active_notifications.where(read: false).order('created_at DESC')
