@@ -45,6 +45,10 @@ li {
 
 a.user-link {
   color: #00b4ff;
+  border: none;
+  float: none;
+  padding: 0px;
+
   &:hover {
     color: #00ffd5;
   }
