@@ -6,7 +6,7 @@ class NotificationsController < ApplicationController
   end
 
   def index
-    @notifications = current_user.active_notifications
+    @notifications = current_user.active_notifications.order('created_at DESC')
   end
 
 end

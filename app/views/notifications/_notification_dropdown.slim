@@ -3,6 +3,8 @@
     a.dropdown-toggle href="#" data-toggle="dropdown"
       b.notification
         = current_user.active_notifications.count
-    ul.dropdown-menu
+    ul.dropdown-menu.notification-index-list
       li
-        = render current_user.active_notifications.where(read: false).order('created_at DESC')
+        = render current_user.active_notifications.order('created_at DESC').last(10)
+      li
+        = link_to "See all notifications", notifications_path

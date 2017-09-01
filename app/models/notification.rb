@@ -36,4 +36,11 @@ class Notification < ApplicationRecord
     end
     path
   end
+
+  def style
+    if self.post.photo_url.present?
+      style = "background-image: url(#{self.post.photo_url}); color: white;
+               text-shadow: 2px 2px 4px #000;"
+    end
+  end
 end

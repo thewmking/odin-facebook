@@ -1,2 +1,4 @@
-li
-  = link_to notification.message, link_through_path(notification)
+li style="#{notification.style}"
+  = link_to( gravatar_for(notification.notified_by, size: 35), notification.notified_by)
+  = link_to "#{notification.message} #{time_ago_in_words(notification.created_at)} ago",
+            link_through_path(notification)
