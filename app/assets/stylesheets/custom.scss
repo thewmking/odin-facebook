@@ -43,6 +43,13 @@ li {
   list-style: none;
 }
 
+a.user-link {
+  color: #00b4ff;
+  &:hover {
+    color: #00ffd5;
+  }
+}
+
 
 /* typography */
 

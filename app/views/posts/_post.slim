@@ -9,7 +9,7 @@ li class="post" id="post-#{post.id}"
     .post-content
       - if post.content?
         p
-          = post.content
+          = render_with_mentions(post).html_safe
       - if post.photo_url?
         = image_tag("#{post.photo_url}", class: "img-responsive")
     br
@@ -21,7 +21,7 @@ li class="post" id="post-#{post.id}"
     .likes
       - if post.likes.present?
         .fa.fa-thumbs-up
-        |  
+        |
         = post.likes.count
         .like-users
           | The following users liked this post:
@@ -45,7 +45,7 @@ li class="post" id="post-#{post.id}"
             li
               = link_to "#{c.user.username}:", "/users/#{c.user.id}"
               .comment-content
-                = c.content
+                = render_with_mentions(c).html_safe
               .timestamp
                 | #{time_ago_in_words(c.created_at)} ago
               .delete
