@@ -449,16 +449,13 @@ a {
 
 aside.user-info {
   margin-left: 10px;
-  section {
+  section.user {
+    width: 30%;
+    position: fixed;
+    padding: 10px;
     margin-top: 20px;
-  }
-  section {
-    padding: 10px 0;
-    margin-top: 20px;
-    &:first-child {
-      border: 0;
-      padding-top: 0;
-    }
+    background-color: #F6F7F9;
+    border: 1px solid #e3e3e3;
     span {
       display: block;
       margin-bottom: 3px;
@@ -471,8 +468,48 @@ aside.user-info {
       margin-bottom: 3px;
       margin-top: 0px;
     }
+    @media (min-width: 1200px) {
+      width: 400px;
+    }
+    @media (min-width: 767px) and (max-width: 1199px) {
+      width: 35%;
+    }
+    @media (max-width: 768px) {
+      position: relative;
+      width: 75%;
+    }
+    @media (max-width: 425px) {
+      width: 90%;
+    }
+  }
+  section.friends {
+    display: inline-grid;
+    margin-top: 150px;
+    img {
+      width: 50px;
+    }
+    td {
+      padding: 0px 0px 7px 0px;
+    }
+    @media (max-width: 768px) {
+      margin-top: 0px;
+      img {
+        width: 50px;
+        height: 50px;
+      }
+      td {
+        margin: 0px;
+        a {
+          margin: 0px;
+        }
+      }
+    }
   }
 }
+
+
+
+
 
 .gravatar {
   float: left;

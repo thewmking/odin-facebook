@@ -1,33 +1,43 @@
 .container
   aside.col-md-5.user-info
-    section
-      h1
-        = gravatar_for @user
-        = @user.username
-      .email
-        | Email: #{@user.email}
-      .hometown
-        | Hometown: #{@user.hometown}
-      .birthday
-        | Birthday: #{@user.birthday}
+      section.user
+        h1
+          = gravatar_for @user
+          = @user.username
+        .email
+          | Email: #{@user.email}
+        .hometown
+          | Hometown: #{@user.hometown}
+        .birthday
+          | Birthday: #{@user.birthday}
 
-    - if @user != current_user && @user.in?(current_user.pending)
-      td
-        .fa.fa-clock-o
-        |  Request pending
-    - elsif @user != current_user && !@user.in?(current_user.friends)
-      td
-        = link_to "Add friend", friendships_path(friend_id: @user), method: :post
-    - elsif @user != current_user && @user.in?(current_user.friends)
-      td
-        .fa.fa-check-square
-        |  Friends
-      td.delete
-        = link_to "Unfriend", friendship_path(@user), method: :delete
-    - elsif @user == current_user
-      td
-        = link_to "Edit profile", edit_user_registration_path(current_user)
-    br
+        - if @user != current_user && @user.in?(current_user.pending)
+          td
+            .fa.fa-clock-o
+            |  Request pending
+        - elsif @user != current_user && !@user.in?(current_user.friends)
+          td
+            = link_to "Add friend", friendships_path(friend_id: @user), method: :post
+        - elsif @user != current_user && @user.in?(current_user.friends)
+          td
+            .fa.fa-check-square
+            |  Friends
+          td.delete
+            = link_to "Unfriend", friendship_path(@user), method: :delete
+        - elsif @user == current_user
+          td
+            = link_to "Edit profile", edit_user_registration_path(current_user)
+        br
+      section.friends
+        h2
+         | #{@user.username}'s friends
+        table
+          thead
+            tr
+              th colspan="3"
+          tbody.users
+            = render @user.friends
+
   - if @posts && current_user.in?(@user.friends) || current_user == @user
     .col-md-6.post-feed
       = render @posts

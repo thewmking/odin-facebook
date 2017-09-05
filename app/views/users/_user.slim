@@ -1,10 +1,10 @@
 tr
-  td 
-    = link_to( gravatar_for(user), user_path(user) ) 
+  td
+    = link_to( gravatar_for(user), user_path(user) )
   td
     = link_to "#{user.username}", user_path(user)
   - if user != current_user && user.in?(current_user.pending)
-    td 
+    td
       .fa.fa-clock-o
       |  Request pending
   - elsif user != current_user && !user.in?(current_user.friends)
